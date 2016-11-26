@@ -145,6 +145,8 @@ footer p {
 }
 
 
+/* GifMovie css below. */
+
 .gif {
 	display: none;
 }
@@ -163,23 +165,21 @@ footer p {
 	transform: translate(-50%, -50%);
 }
 
-#gifcontainer>.gif {
+#gifcontainer>img {
 	top: 0;
 	left: 0;
 	right: 0;
 	bottom: 0;
+  width: 100%;
+  height: 100%;
 	transform: translate(0, 0);
 }
 
-#gifcontainer>.gif>div {
-	width: 100%;
-	height: 100%;
+#messages {
+  display: none;
+  
 }
 
-#gifcontainer>.gif>div>canvas {
-	width: 100%;
-	height: 100%;
-}
 #startspotify {
 	width: 38.4px;
 	height: 38.4px;
