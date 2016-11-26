@@ -169,11 +169,11 @@ def expandContractions(text, c_re=c_re):
 
 #   return lyrics
 
-def genre_from_uri(spotify_uri):
-  album_uri = sp.track(spotify_uri)["album"]["id"]
-  return sp.album(album_uri)["genres"]
+# def genre_from_uri(spotify_uri):
+#   album_uri = sp.track(spotify_uri)["album"]["id"]
+#   return sp.album(album_uri)["genres"]
 
-def fetchLyrics(title, artist, spotify_uri="4nI8e3fy1hHvhCvJURv5JI"):
+def fetchLyrics(title, artist):
   url = "{}?art={}&mus={}&apikey={}".format(API_LYRICS_URL, artist, title, API_KEY)
   results = requests.get(url).json()
 
@@ -212,8 +212,8 @@ def fetchLyrics(title, artist, spotify_uri="4nI8e3fy1hHvhCvJURv5JI"):
         start_time = float(text[1])
         duration = start_time
         keywords = []
-        genre = genre_from_uri(spotify_uri) # "rock"
-        keywords.extend(genre)
+        # genre = genre_from_uri(spotify_uri) # "rock"
+        # keywords.extend(genre)
         keywords.append(title)
         keywords.append(artist)
         list_of_keywords.append( (keywords, duration, "") ) # first keyword is empty, until someone starts to sing
@@ -237,13 +237,13 @@ def fetchLyrics(title, artist, spotify_uri="4nI8e3fy1hHvhCvJURv5JI"):
         keywords = list(set(keywords)) # remove duplicates
 
         if len(keywords) == 0:
-          genre = genre_from_uri(spotify_uri) # "rock"
+          # genre = genre_from_uri(spotify_uri) # "rock"
           keywords.append(title)
           keywords.append(artist)
         
         list_of_keywords.append( (keywords, duration, songtext) )
 
-  for (k, d, s) in list_of_keywords:
+  # for (k, d, s) in list_of_keywords:
     # print(s)
     # print("KW: {}, D: {}".format(k, d))
   return list_of_keywords
