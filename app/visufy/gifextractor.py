@@ -15,7 +15,7 @@ if sys.version_info[0] == 3:
 
 else:
     from urllib import urlopen
-    from urllib import URLError
+    from urllib2 import URLError
     from urllib import quote_plus
 
 
