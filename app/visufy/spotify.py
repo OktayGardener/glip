@@ -3,7 +3,7 @@ from spotipy import Spotify
 sp = Spotify()
 
 
-def song_uri(query):
+def song(query):
     """Search Spotify and retrieve a relevant song."""
     tracks = sp.search(q=query, type='track')['tracks']['items']
     if tracks:

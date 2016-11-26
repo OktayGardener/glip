@@ -1,10 +1,12 @@
+from __future__ import absolute_import
+
 # Some test with de Giphy API
 import sys
 import random
 import json
 import math
 
-import .lyrics
+from .lyrics import fetchLyrics
 
 if sys.version_info[0] == 3:
     from urllib.request import urlopen
