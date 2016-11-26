@@ -1,6 +1,6 @@
 function GifMovie(selector, gifArray, spotifyuri) {
   this.hook = $(selector);
-  this.hook.append('<div id="loader"><span>0%</span><img src="loading.gif"></div>');
+  this.hook.append('<div id="loader"><span>0%</span><img src="static/loading.gif"></div>');
   this.hook.append('<div id="startspotify" style="display:none;"><iframe src="https://embed.spotify.com/?uri='+spotifyuri+'" width="300" height="80" frameborder="0" allowtransparency="true"></iframe></div>');
 
   this.hook.append('<div id="tools"><button id="fullscreen"></button></div>')
