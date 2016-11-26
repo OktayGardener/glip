@@ -1,0 +1,53 @@
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<title>Visufy</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+
+	<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+</head>
+
+{% block content %}
+<link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+
+<body>
+	<section class="jumbotron text-xs-center" id="gradient">
+
+		<p class="glip">GLIP</p>
+
+		<p class="spotifylogo"><img src="{% static "btn_connectspotify.png" %}" alt="spotify"></p>
+
+		<div class="container">
+			<br>
+			<br>
+			<br>
+            <br>
+			<br>
+			<br>
+			<br>
+			<h1>Music Visually</h1>
+			<h2>Enjoy your music with lit gifs!</p>
+            <form method="post" label="">
+                {% csrf_token %}
+                {{ form }}
+            <input label="" id="generate_video" type="submit" value="Generate" />
+            </form>
+      </div>
+    </section>
+
+    <script src="static/index.js"></script>
+</body>
+  {% endblock %}
