@@ -1,5 +1,7 @@
 import json
 import requests
+import spotipy
+sp = spotipy.Spotify()
 
 from whoosh.analysis import StemmingAnalyzer, RegexTokenizer, StemFilter, LowercaseFilter, StopFilter
 
@@ -145,13 +147,39 @@ def expandContractions(text, c_re=c_re):
         return cList[match.group(0)]
     return c_re.sub(replace, text)
 
-def fetchLyrics(title, artist):
+# def fetch_lyrics_with_autofill(spotify_uri):
+
+#   title = title_from_uri(spotify_uri)
+#   artist = artist_from_uri(spotify_uri)
+
+#   lyrics = fetchLyrics(title, artist)
+
+#   if len(lyrics) == 0:
+#     genre = genre_from_uri(spotify_uri) # "rock"
+#     song_length = length_from_uri(spotify_uri)
+
+#     num_clips = math.floor(song_length/5.0)
+
+#     for i in xrange(num_clips)
+#       lyrics.append ( (genre, 5.0) )
+
+#     lyrics.append((genre, song_length - num_clips * 5.0)
+
+#     # lyrics = fill_with_random_data()
+
+#   return lyrics
+
+def genre_from_uri(spotify_uri):
+  album_uri = sp.track(spotify_uri)["album"]["id"]
+  return sp.album(album_uri)["genres"]
+
+def fetchLyrics(title, artist, spotify_uri="4nI8e3fy1hHvhCvJURv5JI"):
   url = "{}?art={}&mus={}&apikey={}".format(API_LYRICS_URL, artist, title, API_KEY)
   results = requests.get(url).json()
 
   # searches for the song, returns empty list if not
   if results["type"] != "exact" and results["type"] != "aprox":
-    print("Can't find lyrics.")
+    # print("Can't find lyrics.")
     return []
 
   song = results["mus"][0]
@@ -161,13 +189,13 @@ def fetchLyrics(title, artist):
   results = requests.get(url).json()
 
   if type(results) is list:
-    print("Could not find timing")
+    # print("Could not find timing")
     return []
 
   # finds the id for english
   lang_id = -1
   for lang in results["langs"]:
-    print(lang)
+    # print(lang)
     if lang["langAbbr"] == "ENG":
       lang_id = lang["langID"]
       break
@@ -183,7 +211,12 @@ def fetchLyrics(title, artist):
       for text in subs["text_compressed"]:
         start_time = float(text[1])
         duration = start_time
-        list_of_keywords.append( ([], duration, "") ) # first keyword is empty, until someone starts to sing
+        keywords = []
+        genre = genre_from_uri(spotify_uri) # "rock"
+        keywords.extend(genre)
+        keywords.append(title)
+        keywords.append(artist)
+        list_of_keywords.append( (keywords, duration, "") ) # first keyword is empty, until someone starts to sing
         break
 
   # fills the keyword list with keywords
@@ -192,7 +225,7 @@ def fetchLyrics(title, artist):
       for text in subs["text_compressed"]:
 
         songtext = text[0]
-        print(songtext)
+        # print(songtext)
 
         start_time = float(text[1])
         end_time = float(text[2])
@@ -202,15 +235,20 @@ def fetchLyrics(title, artist):
         keywords = [token.text for token in my_analyzer(expandContractions(songtext))]
 
         keywords = list(set(keywords)) # remove duplicates
+
+        if len(keywords) == 0:
+          genre = genre_from_uri(spotify_uri) # "rock"
+          keywords.append(title)
+          keywords.append(artist)
         
         list_of_keywords.append( (keywords, duration, songtext) )
 
   for (k, d, s) in list_of_keywords:
-    print(s)
-    print("KW: {}, D: {}".format(k, d))
+    # print(s)
+    # print("KW: {}, D: {}".format(k, d))
   return list_of_keywords
 
-art = raw_input('Enter artist:')
-title = raw_input('Enter title:')
+# art = raw_input('Enter artist:')
+# title = raw_input('Enter title:')
 
-fetchLyrics(title, art)
+# fetchLyrics(title, art)
