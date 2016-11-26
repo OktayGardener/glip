@@ -8,6 +8,12 @@ def song(query):
     tracks = sp.search(q=query, type='track')['tracks']['items']
     if tracks:
         # TODO Is it safe to assume that the first result is always the most relevant?
-        return tracks[0]['artist'], tracks[0]['title'], tracks[0]['uri']
+
+        # Always take first artist only.
+        track = tracks[0]
+        artist = track['artists'][0]['name']
+        title = track['name']
+        uri = tracks[0]['uri']
+        return artist, title, uri
     else: 
         return 'Cerulean Crayons', 'Compulsive Dreamer', 'spotify:track:1yqYEOKDj2OakM49MKlqvW'

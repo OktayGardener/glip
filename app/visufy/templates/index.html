@@ -22,33 +22,20 @@
 		<p class="glip">GLIP</p>
 		<p class="spotifylogo"><img src="{% static 'btn_connectspotify.png' %}" alt="spotify"></p>
 		<div class="container">
-			<br>
-			<br>
-			<br>
-            <br>
-			<br>
-			<br>
-			<br>
 			<h1>Music Visually</h1>
 			<h2>Enjoy your music with lit gifs!</p>
-            <input label="" id="generate_video" type="submit" value="Generate" />
+			<input id="query" />
+            <input id="generate_video" type="submit" value="Generate" />
 			<script>
 			$("#generate_video").click(function(){
-				$.post("/", function(data, status){
-					alert("Data: " + data + "\nStatus: " + status);
-					/*var gifs = [
-					{ url: "https://media.giphy.com/media/FdWU4HtO5vTGw/giphy.gif", duration: 2000 },
-					{ url: "https://media.giphy.com/media/l0MYQkR9ZKb9HOhwY/giphy.gif", duration: 5000 },
-					{ url: "https://media.giphy.com/media/3o6Zt0gInLQM2szC48/giphy.gif", duration: 2000 },
-					{ url: "https://media.giphy.com/media/3o7TKntB0bO49U8UoM/giphy.gif", duration: 5000 },
-					{ url: "https://media.giphy.com/media/l3vQXDIVQ5jzjbxIs/giphy.gif", duration: 3000 }
-					];*/
-					
-					// var gifMovie = new GifMovie("#gifcontainer", gifs, "spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf");
+				$.get("/search", {search: $('#query').val()}, function(data, status){
+					console.log(data)					
+					var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
 				});
 			});
 			</script>
       </div>
+	  <div id="gifcontainer">TODO Remove text</div>
     </section>
 
     <script src="static/index.js"></script>

@@ -18,5 +18,6 @@ from django.contrib import admin
 import visufy.views
 
 urlpatterns = [
+	url(r'^search/$', visufy.views.search, name='search'),
     url(r'^$', visufy.views.index, name='index'),
 ]
