@@ -6,3 +6,4 @@ whitenoise==3.2
 json==2.0.9
 urllib3==1.19.1
 whoosh==2.7.4
+spotipy==2.3.8
