@@ -1,35 +1,26 @@
- {% load static %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="">
-	<meta name="author" content="">
-
 	<title>Visufy</title>
-
-	<!-- Bootstrap core CSS -->
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
-
-	<!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
 	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="static/libgif.js"></script>
+    <script src="static/rubbable.js"></script>
+    <script src="static/GifMovie.js"></script>
 </head>
-
-{% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
 
+{% block content %}
 <body>
 	<section class="jumbotron text-xs-center" id="gradient">
-
 		<p class="glip">GLIP</p>
-
-		<p class="spotifylogo"><img src="{% static "btn_connectspotify.png" %}" alt="spotify"></p>
-
+		<p class="spotifylogo"><img src="{% static 'btn_connectspotify.png' %}" alt="spotify"></p>
 		<div class="container">
 			<br>
 			<br>
@@ -40,14 +31,26 @@
 			<br>
 			<h1>Music Visually</h1>
 			<h2>Enjoy your music with lit gifs!</p>
-            <form method="post" label="">
-                {% csrf_token %}
-                {{ form }}
             <input label="" id="generate_video" type="submit" value="Generate" />
-            </form>
+			<script>
+			$("#generate_video").click(function(){
+				$.post("/", function(data, status){
+					alert("Data: " + data + "\nStatus: " + status);
+					/*var gifs = [
+					{ url: "https://media.giphy.com/media/FdWU4HtO5vTGw/giphy.gif", duration: 2000 },
+					{ url: "https://media.giphy.com/media/l0MYQkR9ZKb9HOhwY/giphy.gif", duration: 5000 },
+					{ url: "https://media.giphy.com/media/3o6Zt0gInLQM2szC48/giphy.gif", duration: 2000 },
+					{ url: "https://media.giphy.com/media/3o7TKntB0bO49U8UoM/giphy.gif", duration: 5000 },
+					{ url: "https://media.giphy.com/media/l3vQXDIVQ5jzjbxIs/giphy.gif", duration: 3000 }
+					];*/
+					
+					// var gifMovie = new GifMovie("#gifcontainer", gifs, "spotify:user:spotify:playlist:3rgsDhGHZxZ9sB9DQWQfuf");
+				});
+			});
+			</script>
       </div>
     </section>
 
     <script src="static/index.js"></script>
 </body>
-  {% endblock %}
+{% endblock %}
