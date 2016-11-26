@@ -40,10 +40,10 @@
 			<br>
 			<h1>Music Visually</h1>
 			<h2>Enjoy your music with lit gifs!</p>
-            <form method="post">
+            <form method="post" label="">
                 {% csrf_token %}
-                {{ form.as_p }}
-            <input id="generate_video" type="submit" value="Generate" />
+                {{ form }}
+            <input label="" id="generate_video" type="submit" value="Generate" />
             </form>
       </div>
     </section>
