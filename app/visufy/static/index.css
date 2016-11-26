@@ -18,7 +18,7 @@ body {
     margin-top: 10px;
 }
 
-#song_title {
+#query {
     height: 45px;
     width: 90%;
     margin: 10 auto;
@@ -177,7 +177,7 @@ footer p {
 
 #messages {
   display: none;
-  
+
 }
 
 #startspotify {

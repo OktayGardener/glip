@@ -58,7 +58,6 @@ def getGIF(keyword_list):
 #print(getGIF(["day"]))
 
 
-
 def getGIFList(artist, song_title):
     """TODO Document."""
 
