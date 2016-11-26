@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +14,7 @@
     <!-- Bootstrap core CSS -->
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 
         <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
@@ -21,7 +22,8 @@
 <body>
 <header>
 <p class="glip">GLIP</p>
-<p class="spotifylogo">spotify</p>
+<p class="spotifylogo"><img src="{% static "btn_connectspotify.png" %}" alt="spotify"></p>
+
 </header>
 {% block content %}{% endblock %}
 
@@ -30,8 +32,7 @@
     <p class="float-xs-right">
       <a href="#">Back to top</a>
     </p>
-    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-    <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+
   </div>
 </footer>
 
