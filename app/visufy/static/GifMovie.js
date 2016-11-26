@@ -46,7 +46,7 @@ GifMovie.prototype.playNextGif = function() {
 
 GifMovie.prototype.gifLoaded = function() {
   this.loaded++;
-  this.loader.find("span").html((100 * this.loaded / this.gifs.length) + "%");
+  this.loader.find("span").html(Math.round((100 * this.loaded / this.gifs.length)) + "%");
   console.log("Loaded gifs: " + this.loaded);
   if(this.loaded == this.gifs.length) {
     this.loader.hide();
