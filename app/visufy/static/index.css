@@ -1,5 +1,5 @@
 body {
-  min-height: 75rem; /* Can be removed; just added for demo purposes */
+  padding:5%;
 }
 
 .navbar {
@@ -11,14 +11,15 @@ body {
   border-bottom: 1px solid #55595c;
 }
 
-.glip {
-    font-family: 'Baloo Bhaina', cursive;
+.glip, .spotifylogo {
+	display: inline-block;
+	width: 50%;	
+	font-family: 'Baloo Bhaina', cursive;
     font-size: 60px;
 }
-
 .spotifylogo {
-    font-family: 'Baloo Bhaina', cursive;
-    font-size: 60px;
+	float:right; 
+	text-align:right;
 }
 
 h1 {
