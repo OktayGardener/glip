@@ -16,3 +16,6 @@ https://djangogirls.gitbooks.io/django-girls-tutorial-extensions/content/heroku/
 
 # The template
 https://github.com/heroku/heroku-django-template
+
+# Django tutorial
+https://docs.djangoproject.com/en/1.10/intro/tutorial01/
