@@ -2,13 +2,18 @@
 import sys
 import random
 import json
+import math
+import app.lyrics.lyrics as lyrics
+
 if sys.version_info[0] == 3:
     from urllib.request import urlopen
     from urllib.request import URLError
+    from urllib.parse import quote_plus
+
 else:
     from urllib import urlopen
     from urllib import URLError
-
+    from urllib import quote_plus
 
 
 # TODO what picture to propose if no one is propose by giphy
@@ -21,11 +26,16 @@ def getGIF(keyword_list):
     which has been given by Giphy.com,
     """
     # https://github.com/Giphy/GiphyAPI
-    limit = 100
+    limit = 25
     key = 'dc6zaTOxFJmzC' # public key, subject to rate limit
     # a production can be requested for high usage
     # TODO check for special characters
-    keyword_query = '+'.join(keyword_list)
+    #keyword_query = '+'.join(keyword_list)
+    if len(keyword_list) != 0:
+        keyword_query = random.choice(keyword_list)
+    else:
+        keyword_query = "Music"
+    quote_plus(keyword_query)
     giphyApiquery = 'http://api.giphy.com/v1/gifs/search?q=' + keyword_query + '&api_key='+key+'&limit=' + str(limit)
     try:
         url = urlopen(giphyApiquery)
@@ -42,4 +52,30 @@ def getGIF(keyword_list):
     return gifurl
 
 
-#print(getGIF(["ABBA", "london"]))
+#print(getGIF(["day"]))
+
+
+
+def getGIFList(artist, song_title):
+
+    # get the (keyword, duration) list from the lyrics
+    l_keyword_duration = lyrics.fetchLyrics(song_title, artist)
+
+
+    # if the language is not supported we return an empty list
+    if len(l_keyword_duration) == 0:
+        return []
+
+    l_gif_duration = []
+    i = 0
+    for kwd in l_keyword_duration:
+        keywords = kwd[0]
+        duration = kwd[1]
+        l_gif_duration.append((getGIF(keywords), duration))
+
+
+    return l_gif_duration
+
+
+#list = getGIFList("ABBA", "mamma mia")
+
