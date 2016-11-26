@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +13,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
 
         <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
@@ -24,8 +24,16 @@
 <p class="spotifylogo">spotify</p>
 </header>
 {% block content %}{% endblock %}
-<footer>
-<p>TODO Copyright notice</p>
+
+<footer class="text-muted">
+  <div class="container">
+    <p class="float-xs-right">
+      <a href="#">Back to top</a>
+    </p>
+    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+    <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a href="../../getting-started/">getting started guide</a>.</p>
+  </div>
 </footer>
+
 </body>
 </html>

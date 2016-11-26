@@ -19,5 +19,6 @@ import visufy.views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^video', visufy.views.video, name='video'),
     url(r'^$', visufy.views.index, name='index'),
 ]

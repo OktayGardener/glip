@@ -11,17 +11,6 @@ body {
   border-bottom: 1px solid #55595c;
 }
 
-.glip, .spotifylogo {
-	display: inline-block;
-	width: 50%;	
-	font-family: 'Baloo Bhaina', cursive;
-    font-size: 60px;
-}
-.spotifylogo {
-	float:right; 
-	text-align:right;
-}
-
 h1 {
     font-family: 'Baloo Bhaina', cursive;
     font-size: 60px;
