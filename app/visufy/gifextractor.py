@@ -48,7 +48,7 @@ def getGIF(keyword_list):
         if n == 0:
             return ""
         rand_idx = random.randint(0, n-1)
-        gifurl = data['data'][rand_idx]['images']['original']['url']
+        gifurl = data['data'][rand_idx]['images']['downsized']['url']
     except URLError:
         gifurl = ""
 
@@ -82,4 +82,3 @@ def getGIFList(artist, song_title):
 
 
 #list = getGIFList("ABBA", "mamma mia")
-

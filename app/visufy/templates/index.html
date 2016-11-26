@@ -29,7 +29,7 @@
 			<script>
 			$("#generate_video").click(function(){
 				$.get("/search", {search: $('#query').val()}, function(data, status){
-					console.log(data)					
+					console.log(data)
 					var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
 				});
 			});
