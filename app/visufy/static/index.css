@@ -18,7 +18,8 @@ body {
 }
 
 #song_title {
-    height: 35px;
+    height: 45px;
+    width: 90%;
     margin: 10 auto;
     margin-top:20px;
     border: none;
@@ -27,7 +28,7 @@ body {
 }
 
 #generate_video {
-    width: 60%;
+    width: 50%;
     height: 40px;
     margin-top:30px;
     border:solid 1px #ffffff;
