@@ -45,6 +45,10 @@ GifMovie.prototype.playNextGif = function() {
   console.log("Playing gif: " + this.nextGif);
   if(this.nextGif < this.gifs.length) {
     this.view.attr("src", this.gifs[this.nextGif].url);
+    if(this.gifs[this.nextGif].lyrics.length > 0) {
+      this.msg(this.gifs[this.nextGif].lyrics, 2000);
+      this.highlightMsg(this.gifs[this.nextGif].keyword);
+    }
     setTimeout(this.playNextGif.bind(this), this.gifs[this.nextGif].duration);
     this.currentGif = this.nextGif;
     this.nextGif++;
@@ -66,7 +70,7 @@ GifMovie.prototype.gifLoaded = function() {
 }
 
 GifMovie.prototype.play = function() {
-  this.playNextGif();
+  setTimeout(this.playNextGif.bind(this), 500);
   this.view.show();
   setTimeout(this.starter.hide, 100);
 }
@@ -119,4 +123,10 @@ GifMovie.prototype.msg = function(msg, timer) {
   this.message.show();
   if(typeof timer !== 'undefined')
     this.messageTimer = setTimeout(this.message.hide, timer);
+}
+
+GifMovie.prototype.highlightMsg = function(word) {
+  var text = this.message.text();
+  text = text.replace(word, '<span style="color: #ff0000;">' + word + '</span>');
+  this.message.html(text);
 }
