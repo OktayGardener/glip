@@ -94,7 +94,8 @@ GifMovie.prototype.toggleFullscreen = function() {
       right: this.hook.css("right"),
       width: this.hook.css("width"),
       height: this.hook.css("height"),
-      zIndex: this.hook.css("z-index")
+      zIndex: this.hook.css("z-index"),
+      marginTop: this.hook.css("margin-top")
     };
     this.hook.css({
       position: 'fixed',
@@ -104,7 +105,8 @@ GifMovie.prototype.toggleFullscreen = function() {
       left: 0,
       width: "auto",
       height: "auto",
-      zIndex: 9999
+      zIndex: 9999,
+      marginTop: 0
     });
   } else {
     this.hook.css(this.collapsedCSS);
