@@ -7,37 +7,57 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>Visufy</title>
 	<link href="https://fonts.googleapis.com/css?family=Baloo+Bhaina" rel="stylesheet">
-	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.5/css/bootstrap-flex.css" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="{% static 'base.css' %}" />
-	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="static/libgif.js"></script>
-    <script src="static/rubbable.js"></script>
-    <script src="static/GifMovie.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+	<script src="static/libgif.js"></script>
+	<script src="static/rubbable.js"></script>
+	<script src="static/GifMovie.js"></script>
 </head>
 <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
-
-{% block content %}
 <body>
-	<section class="jumbotron text-xs-center" id="gradient">
-		<p class="glip">GLIP</p>
-		<p class="spotifylogo"><img src="{% static 'btn_connectspotify.png' %}" alt="spotify"></p>
-		<div class="container">
-			<h1>Music Visually</h1>
-			<h2>Enjoy your music with lit gifs!</p>
-			<input id="query" />
-            <input id="generate_video" type="submit" value="Generate" />
+	<section class="fullheight" id="gradient">
+		
+		<div class="container fullheight">
+			<div class="row titlerow">
+				<div class="glip col-sm text-left">GLIP</div>
+				<div class="spotifylogo col-sm text-right">
+					<img src="{% static 'btn_connectspotify.png' %}" alt="spotify" />
+				</div>
+			</div>
+			<!-- <div class="clearfix"></div> -->
+			<div class="row flex-items-xs-middle contentrow">
+				<div class="col-xs">
+				<h1>Music Visually</h1>
+				<h2>Enjoy your music with lit gifs!</h2>
+				<form>
+					<div class="row flex-items-xs-center">
+						<div class="form-group col-md-8">
+							<input type="text" class="form-control" id="query_input" placeholder="Type a song name" />
+						</div>
+					</div>
+					<div class="row flex-items-xs-center">
+						<div class="col-sm-3 col-xs-6">
+							<input class="form-control btn btn-primary" id="generate_video_button" type="submit" value="Generate" />
+						</div>
+					</div>
+				</form>
+				</div>
+			</div>
 			<script>
-			$("#generate_video").click(function(){
-				$.get("/search", {search: $('#query').val()}, function(data, status){
-					console.log(data)					
-					var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
+				$("#generate_video").click(function(){
+					$.get("/search", {search: $('#query').val()}, function(data, status){
+						console.log(data)					
+						var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
+					});
 				});
-			});
 			</script>
-      </div>
-	  <div id="gifcontainer">TODO Remove text</div>
-    </section>
+		</div>
+		<!-- <div id="gifcontainer">TODO Remove text</div> -->
+	</section>
 
-    <script src="static/index.js"></script>
+	<!-- <script src="static/index.js"></script> -->
 </body>
-{% endblock %}
+</html>

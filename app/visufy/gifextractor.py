@@ -63,7 +63,7 @@ def getGIFList(artist, song_title):
     """TODO Document."""
 
     # get the (keyword, duration) list from the lyrics
-    l_keyword_duration = fetchLyrics(song_title, artist)
+    l_keyword_duration = fetchLyrics(song_title, artist)[0:5]
 
 
     # if the language is not supported we return an empty list
