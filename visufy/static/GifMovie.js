@@ -86,7 +86,7 @@ GifMovie.prototype.toolFadeOut = function() {
 GifMovie.prototype.toggleFullscreen = function() {
   this.fullscreen = !this.fullscreen;
   if(this.fullscreen) {
-    this.hook.collapsedCSS = {
+    this.collapsedCSS = {
       position: this.hook.css("position"),
       top: this.hook.css("top"),
       bottom: this.hook.css("bottom"),
@@ -97,7 +97,7 @@ GifMovie.prototype.toggleFullscreen = function() {
       zIndex: this.hook.css("z-index")
     };
     this.hook.css({
-      position: 'absolute',
+      position: 'fixed',
       top: 0,
       bottom: 0,
       right: 0,
@@ -107,7 +107,7 @@ GifMovie.prototype.toggleFullscreen = function() {
       zIndex: 9999
     });
   } else {
-    this.hook.css(this.hook.collapsedCSS);
+    this.hook.css(this.collapsedCSS);
   }
 }
 
