@@ -47,11 +47,11 @@ def getGIF(keyword_list):
         data = json.loads(json_res)
         n = len(data['data'])
         if n == 0:
-            return ""
+            return []
         rand_idx = random.randint(0, n-1)
         gifurl = data['data'][rand_idx]['images']['downsized']['url']
     except URLError:
-        gifurl = ""
+        gifurl = []
 
     return [gifurl, keyword_query]
 
@@ -74,7 +74,13 @@ def getGIFList(artist, song_title):
         keywords = kwd[0]
         duration = kwd[1]
         lyrics = kwd[2]
-        [gifurl, gifkeyword] = getGIF(keywords)
+        gifinfo =getGIF(keywords)
+        if len(gifinfo) == 0:
+            return []
+        else:
+            gifurl = gifinfo[0]
+            gifkeyword = gifinfo[1]
+
         l_gif_duration.append((gifurl, duration, gifkeyword, lyrics))
 
 
