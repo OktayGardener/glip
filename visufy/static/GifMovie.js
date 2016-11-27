@@ -1,31 +1,43 @@
-function GifMovie(selector, gifArray, spotifyuri) {
+function GifMovie(selector, data) {
+  console.log(data);
   this.hook = $(selector);
+
+  this.hook.html("");
+  this.hook.show();
+
   this.hook.append('<div id="loader"><span>0%</span><img src="static/loading.gif"></div>');
-  this.hook.append('<div id="startspotify" style="display:none;"><iframe src="https://embed.spotify.com/?uri='+spotifyuri+'" width="300" height="80" frameborder="0" allowtransparency="true"></iframe></div>');
+  this.hook.append('<div id="startspotify" style="display:none;"><iframe src="https://embed.spotify.com/?uri='+data.uri+'" width="300" height="80" frameborder="0" allowtransparency="true"></iframe></div>');
 
   this.hook.append('<div id="messages"></div>');
+  this.messageTimer = 0;
 
-  this.hook.append('<div id="tools"><button id="fullscreen"></button></div>')
+  this.hook.append('<div id="tools"><div id="songinfo">' + data.artist + ' - ' + data.title + '</div><button id="fullscreen"></button></div>')
   this.fullscreen = false;
   this.hook.find("#fullscreen").click(this.toggleFullscreen.bind(this));
   this.toolstimer = 0;
 
   this.hook.append('<img id="gifview" style="display:none;">');
 
+  this.message = this.hook.find("#messages");
   this.view = this.hook.find("#gifview");
   this.loader = this.hook.find("#loader");
   this.starter = this.hook.find("#startspotify");
   this.tools = this.hook.find("#tools");
 
-  this.gifs = gifArray;
+  this.gifs = data.gifs;
   this.loaded = 0;
   this.nextGif = 0;
   this.currentGif = 0;
-  for(var i in gifArray)  {
-    var img = $("<img />").attr("src", gifArray[i].url);
-    img.on("load", this.gifLoaded.bind(this));
-    console.log("Preloading image: " + i);
-
+  if(this.gifs.length > 0) {
+    for(var i in this.gifs)  {
+      var img = $("<img />").attr("src", this.gifs[i].url);
+      img.on("load", this.gifLoaded.bind(this));
+      console.log("Preloading image: " + i);
+    }
+  } else {
+    console.log(this);
+    this.loader.hide();
+    this.msg("Could not get the lyrics.")
   }
 };
 
@@ -97,4 +109,12 @@ GifMovie.prototype.toggleFullscreen = function() {
   } else {
     this.hook.css(this.hook.collapsedCSS);
   }
+}
+
+GifMovie.prototype.msg = function(msg, timer) {
+  clearTimeout(this.messageTimer);
+  this.message.html(msg);
+  this.message.show();
+  if(typeof timer !== 'undefined')
+    this.messageTimer = setTimeout(this.message.hide, timer);
 }

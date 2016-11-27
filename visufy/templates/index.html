@@ -52,21 +52,24 @@
 				</div>
 			</div>
 			</div>
-
 			
 		</div>
 		
 	</section>
 
 	<script>
-		$("#generate_video").click(function(){
-			$("#gifcontainer").fadeIn();
-			$.get("/search", {search: $('#query').val()}, function(data, status){
-				console.log(data)					
-				var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
-			});
+	$("#generate_video").click(function(){
+		$("#gifcontainer").fadeIn();
+		$(this).prop("disabled", true);
+		$("#query").prop("disabled", true);
+		$.get("/search", {search: $('#query').val()}, function(data, status){
+			$(this).prop("disabled", false);
+			$("#query").prop("disabled", false);
+			var gifMovie = new GifMovie("#gifcontainer", data);
 		});
+	});
 	</script>
+
 	<script src="static/index.js"></script>
 </body>
 </html>

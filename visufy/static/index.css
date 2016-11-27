@@ -94,8 +94,15 @@ body {
 }
 
 #messages {
+  position: absolute;
   display: none;
-
+  background: rgba(0,0,0,0.4);
+  color: #ffffff;
+  top: 20px;
+  left: 50%;
+  font-size: 32px;
+  transform: translate(-50%, 0);
+  z-index: 50;
 }
 
 #startspotify {
@@ -141,9 +148,17 @@ body {
 	z-index: 20;
 }
 
-#tools button {
+#tools #fullscreen {
 	float: right;
 	width: 30px;
 	height: 30px;
 	margin: 5px;
+}
+
+#tools #songinfo {
+  float: left;
+  font-size: 24px;
+  height: 30px;
+  margin: 5px;
+  color: white;
 }

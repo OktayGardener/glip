@@ -1,6 +1,9 @@
 # visufy
 hackathon lyyyyfe
 
+# LUVE @HEROKU!
+https://glip.herokuapp.com/
+
 * Django app
 pip install django
 pip install whitenoise
