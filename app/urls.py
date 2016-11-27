@@ -19,5 +19,6 @@ import visufy.views
 
 urlpatterns = [
 	url(r'^search/$', visufy.views.search, name='search'),
+	url(r'^autocomp/$', visufy.views.autocomp, name='autocomp'),
     url(r'^$', visufy.views.index, name='index'),
 ]
