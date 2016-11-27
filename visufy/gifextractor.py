@@ -33,14 +33,13 @@ def getGIF(keyword_list):
     limit = 25
     key = 'dc6zaTOxFJmzC' # public key, subject to rate limit
     # a production can be requested for high usage
-    # TODO check for special characters
-    #keyword_query = '+'.join(keyword_list)
     if len(keyword_list) != 0:
         keyword_query = random.choice(keyword_list)
     else:
         keyword_query = "Music"
-    quote_plus(keyword_query)
-    giphyApiquery = 'http://api.giphy.com/v1/gifs/search?q=' + keyword_query + '&api_key='+key+'&limit=' + str(limit)
+
+    formated_keyword_query = quote_plus(keyword_query)
+    giphyApiquery = 'http://api.giphy.com/v1/gifs/search?q=' + formated_keyword_query + '&api_key='+key+'&limit=' + str(limit)
     try:
         url = urlopen(giphyApiquery)
         json_res = url.read().decode('utf8')
@@ -51,9 +50,30 @@ def getGIF(keyword_list):
         rand_idx = random.randint(0, n-1)
         gifurl = data['data'][rand_idx]['images']['downsized']['url']
     except URLError:
-        gifurl = []
+        return []
 
     return [gifurl, keyword_query]
+
+
+
+def getRandomGIF():
+    # https://github.com/Giphy/GiphyAPI
+    limit = 25
+    key = 'dc6zaTOxFJmzC'  # public key, subject to rate limit
+    # a production can be requested for high usage
+    # TODO check for special characters
+    # keyword_query = '+'.join(keyword_list)
+    giphyApiquery = 'http://api.giphy.com/v1/gifs/random?api_key=' + key
+    try:
+        url = urlopen(giphyApiquery)
+        json_res = url.read().decode('utf8')
+        data = json.loads(json_res)
+        gifurl = data['data']['image_original_url']
+    except URLError:
+        return []
+
+    return [gifurl, ""]
+
 
 
 #print(getGIF(["day"]))
@@ -74,12 +94,14 @@ def getGIFList(artist, song_title):
         keywords = kwd[0]
         duration = kwd[1]
         lyrics = kwd[2]
-        gifinfo =getGIF(keywords)
+        gifinfo = getGIF(keywords)
         if len(gifinfo) == 0:
-            return []
-        else:
-            gifurl = gifinfo[0]
-            gifkeyword = gifinfo[1]
+            gifinfo = getGIF([artist])
+        if len(gifinfo) == 0:
+            gifinfo = getRandomGIF()
+
+        gifurl = gifinfo[0]
+        gifkeyword = gifinfo[1]
 
         l_gif_duration.append((gifurl, duration, gifkeyword, lyrics))
 
@@ -87,5 +109,5 @@ def getGIFList(artist, song_title):
     return l_gif_duration
 
 
-#list = getGIFList("ABBA", "mamma mia")
+#list = getGIFList("katy perry", "firework")
 #print(list)
