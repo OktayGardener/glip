@@ -22,8 +22,8 @@ def search(request):
 	response['artist'] = artist
 	response['title'] = title
 	response['gifs'] = []
-	for url, duration in r:
-		response['gifs'].append({'url': url, 'duration': duration * 1000})
+	for url, duration, keyword, lyrics in r:
+		response['gifs'].append({'url': url, 'duration': duration * 1000, 'keyword': keyword, 'lyrics': lyrics})
 	return HttpResponse(json.dumps(response), content_type='application/json')
 
 def index(request):
