@@ -73,11 +73,11 @@
 	</section>
 
 	<script>
-	function search() {
+	function search(query) {
 		$("#generate_video").html('<i class="fa fa-spinner fa-spin"></i>  GENERATING GLIP');
-		$(this).prop("disabled", true);
+		$("#generate_video").prop("disabled", true);
 		$("#query").prop("disabled", true);
-		$.get("/search", {search: $('#query').val()}, function(data, status){
+		$.get("/search", {search: query}, function(data, status){
 			$(".should_hide_when_playing").fadeOut();
 			$("#gifcontainer").fadeIn();
 			$("#go_back").fadeIn();
@@ -85,14 +85,14 @@
 			$(".h1-title").fadeIn();
 			$(".h3-artist").text(data.artist)
 			$(".h3-artist").fadeIn();
-			$(this).prop("disabled", false);
+			$("#generate_video").prop("disabled", false);
 			$("#query").prop("disabled", false);
 			var gifMovie = new GifMovie("#gifcontainer", data);
 		});
 	}
 
 	// TODO Events should be replaced with a form submit event listener for user accessibility (e.g. not all users use Enter to submit forms on their computer).
-	$("#generate_video").click(search);
+	$("#generate_video").click(function() { search($("#query").val()); });
 	$('#query').keypress(function(e){
       if(e.keyCode==13)
       	$('#generate_video').click();
@@ -111,7 +111,9 @@
       },
       minLength: 3,
       select: function( event, ui ) {
-        console.log( "Selected: " + ui.item.value + " aka " + ui.item.id );
+        search(ui.item.value);
+				ui.item.value = ui.item.label;
+				$("#query").val(ui.item.label);
       }
     } );
 	</script>

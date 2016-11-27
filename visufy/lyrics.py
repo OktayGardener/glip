@@ -146,7 +146,7 @@ def expandContractions(text, c_re=c_re):
 
 def fetchLyrics(title, artist):
   """TODO Document."""
-  url = "{}?art={}&mus={}&apikey={}".format(API_LYRICS_URL, artist, title, API_KEY)
+  url = "{}?art={}&mus={}&apikey={}".format(''.join(API_LYRICS_URL).encode('utf-8'), ''.join(artist).encode('utf-8'), ''.join(title).encode('utf-8'), API_KEY)
   results = requests.get(url).json()
 
   # searches for the song, returns empty list if not
@@ -211,7 +211,7 @@ def fetchLyrics(title, artist):
         if len(keywords) == 0:
           keywords.append(title)
           keywords.append(artist)
-        
+
         list_of_keywords.append( (keywords, duration, songtext) )
 
   return list_of_keywords

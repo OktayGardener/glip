@@ -33,7 +33,7 @@ def autocomp(request):
 	response = {}
 	response['songs'] = []
 	for artist, title, uri in songs:
-		response['songs'].append({'label': artist + "-" + title, 'value': uri})
+		response['songs'].append({'label': artist + " - " + title, 'value': uri})
 	return HttpResponse(json.dumps(response), content_type='application/json')
 
 def index(request):
