@@ -22,7 +22,8 @@ h1, h2 {
 }
 
 .titlerow {
-  height: 20%;
+  height: 17%;
+  padding-top: 3%
 }
 
 .contentrow {
@@ -33,7 +34,7 @@ h1, h2 {
   height: 100%;
 }
 
-#query_input {
+#query {
   text-align: center;
   height: 3em;
   border-radius: 1.5em;
@@ -41,7 +42,7 @@ h1, h2 {
   max-width: 900px;
 }
 
-#generate_video_button {
+#generate_video {
   background-color: orange;
   border: none;
   height: 3em;
@@ -209,16 +210,18 @@ footer p {
   margin-bottom: .25rem;
 }
 
-
 .gif {
 	display: none;
 }
 
 #gifcontainer {
+  margin: 10px 0;
 	position: relative;
-	width: 600px;
+	/*width: 600px;*/
 	height: 400px;
-	border: 2px solid #000000;
+	/*border: 2px solid #000000;*/
+  background-color: rgba(255,255,255,0.2);
+  border-radius: 1.5em;
 }
 
 #gifcontainer>* {

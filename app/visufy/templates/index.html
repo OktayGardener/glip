@@ -32,22 +32,30 @@
 				<div class="col-xs">
 				<h1>Music Visually</h1>
 				<h2>Enjoy your music with lit gifs!</h2>
-				<form>
+				
 					<div class="row flex-items-xs-center">
 						<div class="form-group col-md-8">
-							<input type="text" class="form-control" id="query_input" placeholder="Type a song name" />
+							<input type="text" class="form-control" id="query" placeholder="Type a song name" />
 						</div>
 					</div>
 					<div class="row flex-items-xs-center">
 						<div class="col-sm-3 col-xs-6">
-							<input class="form-control btn btn-primary" id="generate_video_button" type="submit" value="Generate" />
+							<input class="form-control btn btn-primary" id="generate_video" type="submit" value="Generate" />
 						</div>
 					</div>
-				</form>
+				
+				
+				<div class="row flex-items-xs-center" >
+					<div class="col-xs-7">
+						<div id="gifcontainer" style="display: none"></div>
+					</div>
 				</div>
 			</div>
+			</div>
+
 			<script>
 				$("#generate_video").click(function(){
+					$("#gifcontainer").fadeIn();
 					$.get("/search", {search: $('#query').val()}, function(data, status){
 						console.log(data)					
 						var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
@@ -55,9 +63,9 @@
 				});
 			</script>
 		</div>
-		<!-- <div id="gifcontainer">TODO Remove text</div> -->
+		
 	</section>
 
-	<!-- <script src="static/index.js"></script> -->
+	<script src="static/index.js"></script>
 </body>
 </html>
