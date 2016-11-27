@@ -5,6 +5,7 @@ import sys
 import random
 import json
 import math
+import multiprocessing
 
 from .lyrics import fetchLyrics
 #from visufy.lyrics import fetchLyrics
@@ -78,6 +79,19 @@ def getRandomGIF():
 
 #print(getGIF(["day"]))
 
+def getGIFInfo(x):
+    artist, keywords, duration, lyrics = x
+
+    gifinfo = getGIF(keywords)
+    if len(gifinfo) == 0:
+        gifinfo = getGIF([artist])
+    if len(gifinfo) == 0:
+        gifinfo = getRandomGIF()
+
+    gifurl = gifinfo[0]
+    gifkeyword = gifinfo[1]
+
+    return (gifurl, duration, gifkeyword, lyrics)
 
 def getGIFList(artist, song_title):
     """TODO Document."""
@@ -108,6 +122,26 @@ def getGIFList(artist, song_title):
 
     return l_gif_duration
 
+def getGIFListMultiprocess(artist, song_title):
+        """TODO Document."""
+        # get the (keyword, duration) list from the lyrics
+        l_keyword_duration = fetchLyrics(song_title, artist)
 
-#list = getGIFList("katy perry", "firework")
-#print(list)
+        # if the language is not supported we return an empty list
+        if len(l_keyword_duration) == 0:
+            return []
+
+
+        no_cpu = multiprocessing.cpu_count()
+        arg = [(artist,) + x for x in l_keyword_duration]
+        a = 1
+        with multiprocessing.Pool(no_cpu) as p:
+           l_total_gif_duration = p.map(getGIFInfo, arg)
+
+        return l_total_gif_duration
+
+
+# list = getGIFList("katy perry", "firework")
+# print(list)
+# list = getGIFListMultiprocess("katy perry", "firework")
+# print(list)
