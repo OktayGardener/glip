@@ -28,7 +28,7 @@ h1 {
 h2 {
   font-size: 1.4em;
   font-family: sans-serif;
-  margin-bottom: 30px; 
+  margin-bottom: 30px;
 }
 
 h3 {
@@ -94,7 +94,7 @@ h1, h2, h3 {
 }
 
 body {
-  background-color: darkgrey;
+  background-color: white;
   height: 100vh;
 }
 

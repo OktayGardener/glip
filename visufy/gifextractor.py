@@ -38,7 +38,7 @@ def getGIF(keyword_list):
         keyword_query = random.choice(keyword_list)
     else:
         keyword_query = "Music"
-        
+
     formated_keyword_query = quote_plus(keyword_query.encode('utf-8'))
     giphyApiquery = 'http://api.giphy.com/v1/gifs/search?q=' + formated_keyword_query + '&api_key='+key+'&limit=' + str(limit)
     try:
@@ -95,7 +95,6 @@ def getGIFInfo(x):
 
 def getGIFList(artist, song_title):
     """TODO Document."""
-
     # get the (keyword, duration) list from the lyrics
     l_keyword_duration = fetchLyrics(song_title, artist)
 
@@ -125,7 +124,7 @@ def getGIFList(artist, song_title):
 def getGIFListMultiprocess(artist, song_title):
         """TODO Document."""
         # get the (keyword, duration) list from the lyrics
-        l_keyword_duration = fetchLyrics(song_title, artist)
+        l_keyword_duration = fetotifchLyrics(song_title, artist)
 
         # if the language is not supported we return an empty list
         if len(l_keyword_duration) == 0:
@@ -139,9 +138,3 @@ def getGIFListMultiprocess(artist, song_title):
            l_total_gif_duration = p.map(getGIFInfo, arg)
 
         return l_total_gif_duration
-
-
-# list = getGIFList("katy perry", "firework")
-# print(list)
-# list = getGIFListMultiprocess("katy perry", "firework")
-# print(list)

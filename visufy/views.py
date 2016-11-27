@@ -9,7 +9,7 @@ from django.http import HttpResponse
 from .spotify import song
 from .spotify import searchsongs
 from .lyrics import fetchLyrics
-from .gifextractor import getGIFList
+from .gifextractor import getGIFList, getGIFListMultiprocess
 
 
 def search(request):

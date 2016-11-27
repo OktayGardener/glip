@@ -4,4 +4,4 @@ from django.apps import AppConfig
 
 
 class VisufyConfig(AppConfig):
-    name = 'visufy'
+    name = 'glip'
