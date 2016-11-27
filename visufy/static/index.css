@@ -63,6 +63,17 @@ h1, h2, h3 {
 
 #generate_video {
   background-color: #f4656a;
+  color:white;
+}
+
+#go_back {
+  background-color: transparent;
+  border: solid 1px white;
+  color: white;
+  margin-top: 15px;
+}
+
+.btn-rounded {
   border: none;
   height: 3em;
   border-radius: 1.5em;

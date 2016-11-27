@@ -11,7 +11,7 @@ function GifMovie(selector, data) {
   this.hook.append('<div id="messages"></div>');
   this.messageTimer = 0;
 
-  this.hook.append('<div id="tools"><div id="songinfo">' + data.artist + ' - ' + data.title + '</div><button id="fullscreen" aria-label="fullscreen"><span class="lnr lnr-frame-expand" aria-hidden="true"></span></button></div>')
+  this.hook.append('<div id="tools"><div id="songinfo">' + data.artist + ' - ' + data.title + '</div><button id="fullscreen" aria-label="fullscreen"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button></div>')
   this.fullscreen = false;
   this.hook.find("#fullscreen").click(this.toggleFullscreen.bind(this));
   this.toolstimer = 0;
