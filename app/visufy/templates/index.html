@@ -28,14 +28,17 @@
             <input id="generate_video" type="submit" value="Generate" />
 			<script>
 			$("#generate_video").click(function(){
+				$(this).prop("disabled", true);
+				$("#query").prop("disabled", true);
 				$.get("/search", {search: $('#query').val()}, function(data, status){
-					console.log(data)					
-					var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
+					$(this).prop("disabled", false);
+					$("#query").prop("disabled", false);
+					var gifMovie = new GifMovie("#gifcontainer", data);
 				});
 			});
 			</script>
       </div>
-	  <div id="gifcontainer">TODO Remove text</div>
+	  <div id="gifcontainer"></div>
     </section>
 
     <script src="static/index.js"></script>
