@@ -1,4 +1,5 @@
 function GifMovie(selector, data) {
+  console.log(data);
   this.hook = $(selector);
 
   this.hook.html("");
@@ -10,7 +11,7 @@ function GifMovie(selector, data) {
   this.hook.append('<div id="messages"></div>');
   this.messageTimer = 0;
 
-  this.hook.append('<div id="tools"><button id="fullscreen"></button></div>')
+  this.hook.append('<div id="tools"><div id="songinfo">' + data.artist + ' - ' + data.title + '</div><button id="fullscreen"></button></div>')
   this.fullscreen = false;
   this.hook.find("#fullscreen").click(this.toggleFullscreen.bind(this));
   this.toolstimer = 0;

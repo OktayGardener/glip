@@ -14,14 +14,17 @@ from .gifextractor import getGIFList
 def search(request):
 	print("YO")  # TODO Remove.
 	query = request.GET['search']
-	title, artist, uri = song(query)
-	r = getGIFList(title, artist)	
+	artist, title, uri = song(query)
+	print(artist + " - " + title)
+	r = getGIFList(artist, title)
 	response = {}
 	response['uri'] = uri
+	response['artist'] = artist
+	response['title'] = title
 	response['gifs'] = []
 	for url, duration in r:
 		response['gifs'].append({'url': url, 'duration': duration * 1000})
 	return HttpResponse(json.dumps(response), content_type='application/json')
 
-def index(request):    
+def index(request):
 	return render(request, 'index.html', {})

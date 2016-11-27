@@ -236,9 +236,17 @@ footer p {
 	z-index: 20;
 }
 
-#tools button {
+#tools #fullscreen {
 	float: right;
 	width: 30px;
 	height: 30px;
 	margin: 5px;
+}
+
+#tools #songinfo {
+  float: left;
+  font-size: 24px;
+  height: 30px;
+  margin: 5px;
+  color: white;
 }
