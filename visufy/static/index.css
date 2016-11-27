@@ -12,12 +12,31 @@
   padding: 12px 0;
 }
 
-.glip, h1, h2 {
+.glip, h1, h2, h3 {
   font-family: 'Baloo Bhaina';
   color:white;
 }
 
-h1, h2 {
+h1 {
+  font-size: 4em;
+}
+
+.h1-title {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 1.4em;
+  font-family: sans-serif;
+  margin-bottom: 30px; 
+}
+
+h3 {
+  font-size: 1.4em;
+  font-family: sans-serif;
+}
+
+h1, h2, h3 {
   text-align: center
 }
 
@@ -43,16 +62,23 @@ h1, h2 {
 }
 
 #generate_video {
-  background-color: orange;
+  background-color: #f4656a;
   border: none;
   height: 3em;
   border-radius: 1.5em;
-  /*max-width: 200px;*/
 }
 
 @media (max-width: 34em) {
   .glip, .spotifylogo {
     text-align: center
+    font-size: 2.5em;
+  }
+  .titlerow {
+    height: 27%;
+    padding-top: 3%
+  }
+  .contentrow {
+    height: 60%;
   }
 }
 
@@ -71,8 +97,7 @@ body {
   margin-top: 15px;
 	position: relative;
 	height: 400px;
-  background-color: rgba(255,255,255,1);
-  border-radius: 1.5em;
+  background-color: rgba(255,255,255,0.2);
 }
 
 
