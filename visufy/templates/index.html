@@ -19,7 +19,7 @@
 <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
 <body>
 	<section class="fullheight" id="gradient">
-		
+
 		<div class="container fullheight">
 			<div class="row titlerow">
 				<div class="glip col-sm text-left">GLIP</div>
@@ -32,7 +32,7 @@
 				<div class="col-xs">
 				<h1>Music Visually</h1>
 				<h2>Enjoy your music with lit gifs!</h2>
-				
+
 					<div class="row flex-items-xs-center">
 						<div class="form-group col-md-8">
 							<input type="text" class="form-control" id="query" placeholder="Type a song name" />
@@ -43,8 +43,8 @@
 							<input class="form-control btn btn-primary" id="generate_video" type="submit" value="Generate" />
 						</div>
 					</div>
-				
-				
+
+
 				<div class="row flex-items-xs-center" >
 					<div class="col-xs-7">
 						<div id="gifcontainer" style="display: none"></div>
@@ -52,24 +52,30 @@
 				</div>
 			</div>
 			</div>
-			
+
 		</div>
-		
+
 	</section>
 
 	<script>
-	$("#generate_video").click(function(){
-		$("#gifcontainer").fadeIn();
+	function search() {
 		$(this).prop("disabled", true);
 		$("#query").prop("disabled", true);
 		$.get("/search", {search: $('#query').val()}, function(data, status){
+			$("#gifcontainer").fadeIn();
 			$(this).prop("disabled", false);
 			$("#query").prop("disabled", false);
 			var gifMovie = new GifMovie("#gifcontainer", data);
 		});
-	});
+	}
+
+	$("#generate_video").click(search);
+	$('#query').keypress(function(e){
+      if(e.keyCode==13)
+      	$('#generate_video').click();
+    });
 	</script>
 
-	<script src="static/index.js"></script>
+	<!--<script src="static/index.js"></script>-->
 </body>
 </html>
