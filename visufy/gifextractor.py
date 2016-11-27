@@ -7,6 +7,7 @@ import json
 import math
 
 from .lyrics import fetchLyrics
+#from visufy.lyrics import fetchLyrics
 
 if sys.version_info[0] == 3:
     from urllib.request import urlopen
@@ -25,8 +26,8 @@ def getGIF(keyword_list):
     Search gif picture related to a set of keywords
     it will pick a ramdom picture from
     :param keyword_list: list of keywords
-    :return: a related gif URL pick ramdomly from a list of 100 pictures
-    which has been given by Giphy.com,
+    :return: (gifurl, gifkeyword) where gifurl is the url of a related gif URL pick ramdomly from a list of 100 pictures
+    which has been given by Giphy.com, and gifkeyword is the word which has been used to seacrh the gif.
     """
     # https://github.com/Giphy/GiphyAPI
     limit = 25
@@ -52,7 +53,7 @@ def getGIF(keyword_list):
     except URLError:
         gifurl = ""
 
-    return gifurl
+    return [gifurl, keyword_query]
 
 
 #print(getGIF(["day"]))
@@ -64,20 +65,21 @@ def getGIFList(artist, song_title):
     # get the (keyword, duration) list from the lyrics
     l_keyword_duration = fetchLyrics(song_title, artist)
 
-
     # if the language is not supported we return an empty list
     if len(l_keyword_duration) == 0:
         return []
 
     l_gif_duration = []
-    i = 0
     for kwd in l_keyword_duration:
         keywords = kwd[0]
         duration = kwd[1]
-        l_gif_duration.append((getGIF(keywords), duration))
+        lyrics = kwd[2]
+        [gifurl, gifkeyword] = getGIF(keywords)
+        l_gif_duration.append((gifurl, duration, gifkeyword, lyrics))
 
 
     return l_gif_duration
 
 
 #list = getGIFList("ABBA", "mamma mia")
+#print(list)
