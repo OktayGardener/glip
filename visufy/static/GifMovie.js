@@ -70,6 +70,7 @@ GifMovie.prototype.gifLoaded = function() {
 }
 
 GifMovie.prototype.play = function() {
+  $(window).unbind("blur");
   setTimeout(this.playNextGif.bind(this), 500);
   this.view.show();
   setTimeout(this.starter.hide, 100);
