@@ -127,6 +127,7 @@ GifMovie.prototype.msg = function(msg, timer) {
 
 GifMovie.prototype.highlightMsg = function(word) {
   var text = this.message.text();
-  text = text.replace(word, '<span style="color: #ff0000;">' + word + '</span>');
+  var regEx = new RegExp(word, "ig");
+  text = text.replace(regEx, '<span style="color: #ff0000;">' + word + '</span>');
   this.message.html(text);
 }
