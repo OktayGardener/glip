@@ -53,19 +53,20 @@
 			</div>
 			</div>
 
-			<script>
-				$("#generate_video").click(function(){
-					$("#gifcontainer").fadeIn();
-					$.get("/search", {search: $('#query').val()}, function(data, status){
-						console.log(data)					
-						var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
-					});
-				});
-			</script>
+			
 		</div>
 		
 	</section>
 
+	<script>
+		$("#generate_video").click(function(){
+			$("#gifcontainer").fadeIn();
+			$.get("/search", {search: $('#query').val()}, function(data, status){
+				console.log(data)					
+				var gifMovie = new GifMovie("#gifcontainer", data.gifs, data.uri);
+			});
+		});
+	</script>
 	<script src="static/index.js"></script>
 </body>
 </html>
