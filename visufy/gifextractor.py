@@ -38,8 +38,8 @@ def getGIF(keyword_list):
         keyword_query = random.choice(keyword_list)
     else:
         keyword_query = "Music"
-
-    formated_keyword_query = quote_plus(keyword_query)
+        
+    formated_keyword_query = quote_plus(keyword_query.encode('utf-8'))
     giphyApiquery = 'http://api.giphy.com/v1/gifs/search?q=' + formated_keyword_query + '&api_key='+key+'&limit=' + str(limit)
     try:
         url = urlopen(giphyApiquery)

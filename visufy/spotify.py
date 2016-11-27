@@ -2,18 +2,26 @@ from spotipy import Spotify
 
 sp = Spotify()
 
-
 def song(query):
-    """Search Spotify and retrieve a relevant song."""
-    tracks = sp.search(q=query, type='track')['tracks']['items']
-    if tracks:
-        # TODO Is it safe to assume that the first result is always the most relevant?
+    """If the query is an uri or url, get it instead"""
+    if query.startswith("spotify:track:") or query.startswith("https://open.spotify.com/track/"):
+        track = sp.track(query)
+    else:
+        """Search Spotify and retrieve a relevant song."""
+        tracks = sp.search(q=query, type='track')['tracks']['items']
+        if tracks:
+            track = tracks[0]
+        else:
+            track = sp.track("spotify:track:6JEK0CvvjDjjMUBFoXShNZ")
+    artist = track['artists'][0]['name']
+    title = track['name']
+    uri = track['uri']
+    return artist, title, uri
 
-        # Always take first artist only.
-        track = tracks[0]
-        artist = track['artists'][0]['name']
-        title = track['name']
-        uri = tracks[0]['uri']
-        return artist, title, uri
-    else: 
-        return 'Cerulean Crayons', 'Compulsive Dreamer', 'spotify:track:1yqYEOKDj2OakM49MKlqvW'
+
+def searchsongs(query):
+    tracks = sp.search(q=query, type='track', limit=5)['tracks']['items']
+    r_tracks = []
+    for track in tracks:
+        r_tracks.append((track['artists'][0]['name'], track['name'], track['uri']))
+    return r_tracks

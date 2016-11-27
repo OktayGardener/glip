@@ -11,7 +11,7 @@ function GifMovie(selector, data) {
   this.hook.append('<div id="messages"></div>');
   this.messageTimer = 0;
 
-  this.hook.append('<div id="tools"><div id="songinfo">' + data.artist + ' - ' + data.title + '</div><button id="fullscreen"></button></div>')
+  this.hook.append('<div id="tools"><div id="songinfo">' + data.artist + ' - ' + data.title + '</div><button id="fullscreen" aria-label="fullscreen"><i class="fa fa-arrows-alt" aria-hidden="true"></i></button></div>')
   this.fullscreen = false;
   this.hook.find("#fullscreen").click(this.toggleFullscreen.bind(this));
   this.toolstimer = 0;
@@ -127,6 +127,7 @@ GifMovie.prototype.msg = function(msg, timer) {
 
 GifMovie.prototype.highlightMsg = function(word) {
   var text = this.message.text();
-  text = text.replace(word, '<span style="color: #ff0000;">' + word + '</span>');
+  var regEx = new RegExp(word, "ig");
+  text = text.replace(regEx, '<span style="color: #ff0000;">' + word + '</span>');
   this.message.html(text);
 }
